@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+    
+    <title>{% include 'title.html' %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        .wrapper {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        table tr td:last-child {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            {% include 'nav.html' %}
+
+            {%- for category, message in get_flashed_messages(with_categories = true) %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+            {%- endfor %}
+
+            <form action="new" method="POST">
+                <label for="name">Name</label><br>
+                <input type="text" name="name" placeholder="Name" /><br>
+                <label for="sizekg">Size kg</label><br>
+                <input type="text" name="sizekg" placeholder="Size kg" /><br>
+                <label for="hazard">Hazard</label><br>
+                <input type="text" name="hazard" placeholder="Y or N" /><br>
+                <label for="rotationh">Rotation h</label><br>
+                <input type="text" name="rotationh" placeholder="h" /><br>
+                <label for="spectraltype">Spectral Type</label><br>
+                <input type="text" name="spectraltype" placeholder="C S M" /><br>
+                <label for="au">AU</label><br>
+                <input type="text" name="au" placeholder=".004291" /><br>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

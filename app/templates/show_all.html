@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+ 
+    <title>{% include 'title.html' %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        .wrapper {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        table tr td:last-child {
+            width: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            {% include 'nav.html' %}
+
+            {%- for message in get_flashed_messages() %}
+            {{ message }}
+            {%- endfor %}
+            <h3 class="pull-left">Asteroid Details</h3>
+            <form method="POST" action="./search" style="display: inline">
+                <input type="text" id="search" name="search" size="12"></td>
+                
+                    <input type="submit" value="Search by name">
+            </form>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Size kg</th>
+                        <th>Hazard</th>
+                        <th>Diameter km</th>
+                        <th>Rotation h</th>
+                        <th>Spectral Type</th>
+                        <th>AU</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for asteroid in asteroids %}
+                    <tr>
+                        <form method="POST" action="./update" style="display: inline">
+                            <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}"></td>
+                            <td><input type="text" id="name" name="name" value="{{ asteroid.name }}"
+                                    size="12"></td>
+                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}"
+                                    size="10"></td>
+                            <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}"
+                                    size="2"></td>
+                            <td><input type="text" id="diameterkm" name="diameterkm" value="{{ asteroid.diameterkm }}"
+                                    size="6"></td>
+                            <td><input type="text" id="rotationh" name="rotationh" value="{{ asteroid.rotationh }}"
+                                    size="8"></td>
+                            <td><input type="text" id="spectraltype" name="spectraltype" value="{{ asteroid.spectraltype }}" size="4"></td>
+                            <td><input type="text" id="au" name="au" value="{{ asteroid.au }}" size="4"></td>
+                            <td>
+                                <input type="submit" value="Update">
+                        </form>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</body>
+
+</html>
