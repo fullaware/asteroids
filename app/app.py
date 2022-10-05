@@ -94,9 +94,8 @@ def search():
 def analytics():
     uri_endpoint = api_endpoint+'/analytics'
     response = requests.get(uri_endpoint)
-    color_count = response.json()['color_count']
-    print(color_count)
-    return render_template('analytics.html', analytics=response.json(), colors=color_count)
+    spectral_types = response.json()['spectral_types']
+    return render_template('analytics.html', analytics=response.json(), spectral_types=spectral_types)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8080, debug=True)
