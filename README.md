@@ -5,7 +5,7 @@ Flask + REST + WebUI for performing CRUD operations on an SQLAlchemy asteroid da
 * Create and load mariadb/mysql database from /dbinit
  
 
-WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroids
+WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroids <--> MariaDB/MySQL
 
 ### Docker Notes:
 ```console
