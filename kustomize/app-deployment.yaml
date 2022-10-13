@@ -24,7 +24,7 @@ spec:
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
-        name: asteroids-app
+        name: asteroids
         envFrom:
         - configMapRef:
             name: asteroids-config
