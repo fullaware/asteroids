@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS asteroids DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE USER 'asteroid'@'%' IDENTIFIED BY 'I@mR00t';
-GRANT SELECT, DELETE, INSERT, UPDATE ON asteroids.* TO 'asteroid'@'%' IDENTIFIED BY 'I@mR00t';
+GRANT SELECT, DELETE, INSERT, UPDATE ON asteroids.* TO 'asteroid'@'%';
 --
 -- Table structure for table `asteroids`
 --
@@ -9,7 +9,7 @@ GRANT SELECT, DELETE, INSERT, UPDATE ON asteroids.* TO 'asteroid'@'%' IDENTIFIED
 CREATE TABLE `asteroids` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  `size` bigint(20) DEFAULT NULL,
+  `sizekg` bigint(20) DEFAULT NULL,
   `diameterkm` double DEFAULT NULL,
   `spectraltype` varchar(50) DEFAULT NULL,
   `rotationh` double DEFAULT NULL,

@@ -25,7 +25,6 @@ else:
 # creating an instance of the flask app
 app = Flask(__name__)
 
-
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 # Configure our Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://reader:Notr00t1@10.28.28.81:3306/car_demo'

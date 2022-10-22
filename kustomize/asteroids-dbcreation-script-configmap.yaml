@@ -15,7 +15,7 @@ data:
     CREATE TABLE `asteroids` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(50) DEFAULT NULL,
-    `size` bigint(20) DEFAULT NULL,
+    `sizekg` bigint(20) DEFAULT NULL,
     `diameterkm` double DEFAULT NULL,
     `spectraltype` varchar(50) DEFAULT NULL,
     `rotationh` double DEFAULT NULL,

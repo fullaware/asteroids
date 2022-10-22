@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+    db:
+        image: mysql:8.0
+        restart: always
+        environment:
+           MYSQL_ROOT_PASSWORD: I@mR00t
+           MYSQL_DATABASE: asteroids
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./dbinit:/docker-entrypoint-initdb.d
     api:
         env_file:
             - api/.env
