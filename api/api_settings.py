@@ -1,4 +1,5 @@
 from flask import Flask, request, Response, jsonify
+from flask_restful import reqparse, abort, Api, Resource
 import urllib.parse
 import os
 from dotenv import load_dotenv
@@ -24,7 +25,7 @@ else:
 
 # creating an instance of the flask app
 app = Flask(__name__)
-
+api = Api(app)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 # Configure our Database
