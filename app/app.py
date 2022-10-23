@@ -65,6 +65,7 @@ def update():
 
         requests.put(uri_api_endpoint, data=json_args, headers=headers)
         flash('Record was successfully updated')
+        flash(json_args)
         return redirect(url_for('show_all'))
     else:
         return redirect(url_for('show_all'))
@@ -89,6 +90,26 @@ def search():
 
     return render_template('show_all.html', asteroids=response.json())
 
+@app.route('/scan', methods=['POST'])
+def scan():
+    
+    # print(jsonify(request.args()))
+    response = request.form
+        
+    headers = {
+            'content-type': 'application/json',
+            'content-length': str(len(response))
+        }
+    str_args = {
+            'range': float(response['range']),
+            'location': float(response['location'])
+        }
+
+    json_args = json.dumps(str_args)
+    print(json_args)
+    response = requests.post(api_endpoint+"/scan", data=json_args, headers=headers)
+
+    return render_template('show_all.html', asteroids=response.json())
 
 @app.route('/analytics')
 def analytics():

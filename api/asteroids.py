@@ -44,7 +44,21 @@ class AsteroidsModel(db.Model):
 
     def get_all_asteroids():
         '''function to get all AsteroidsModel in our database'''
-        return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.filter(db.and_(AsteroidsModel.au > .00200,AsteroidsModel.au < .00330)).all()]
+        return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.all()]
+    
+    def scanrange_asteroids(_range, _location):
+        ''' function to get all Asteroids between 
+            min and max _range in au
+            _range = 100
+            _location = .00200
+
+            Returns all between .00100 - .00300
+            '''
+
+        minau = float(_location - (_range/100000))
+        maxau = float(_location + (_range/100000))
+        print(minau, maxau)
+        return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.filter(db.and_(AsteroidsModel.au > minau,AsteroidsModel.au < maxau)).all()]
 
     def get_asteroid(_id):
         '''function to get asteroid using the id of the asteroid as parameter'''

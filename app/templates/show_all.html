@@ -37,6 +37,12 @@
 
                 <input type="submit" value="Search by name">
             </form>
+            <form method="POST" action="./scan" style="display: inline">
+                Range: <input type="text" id="range" name="range" value=100 size="12">
+                Location au: <input type="text" id="location" name="location" value=0.003 size="12"></td>
+
+                <input type="submit" value="Scan by location">
+            </form>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
@@ -58,7 +64,7 @@
                         <form method="POST" action="./update" style="display: inline">
                             <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}"></td>
                             <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="12"></td>
-                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="10">
+                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="32">
                             </td>
                             <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2">
                             </td>

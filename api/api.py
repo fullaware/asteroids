@@ -37,6 +37,13 @@ class AsteroidSearch(Resource):
 
         return AsteroidsModel.search_all_asteroids(search_string)
 
+class AsteroidScanRange(Resource):
+    def post(self):
+        json_request = request.get_json()
+        range = json_request['range']
+        location = json_request['location']
+
+        return AsteroidsModel.scanrange_asteroids(range, location)
 
 class AsteroidAnalytics(Resource):
     def get(self):
@@ -47,6 +54,7 @@ api.add_resource(AsteroidList, URIPATH)
 api.add_resource(AsteroidById, f"{URIPATH}/<asteroid_id>")
 api.add_resource(AsteroidSearch, f"{URIPATH}/search")
 api.add_resource(AsteroidAnalytics, f"{URIPATH}/analytics")
+api.add_resource(AsteroidScanRange, f"{URIPATH}/scan")
 
 
 if __name__ == "__main__":
