@@ -3,7 +3,8 @@ Flask + REST + WebUI for performing CRUD operations on an SQLAlchemy asteroid da
 
 ### Configuration
 * Create and load mariadb/mysql database from /dbinit
- 
+* Update api/.env with proper mysql location for docker/local dev deployment
+* Update app/.env with proper location of API Hostname
 
 WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroids <--> MariaDB/MySQL
 
@@ -22,6 +23,12 @@ docker run --env-file api/.env -p 8088:8088 fullaware/asteroid-api:latest
 # Stop remove all docker containers
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
+```
+
+### Kubernetes Notes:
+```console
+kubectl apply -k kustomize/
+
 ```
 
 # NOTE: issue with mysql-connector
