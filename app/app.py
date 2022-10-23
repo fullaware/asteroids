@@ -65,7 +65,6 @@ def update():
 
         requests.put(uri_api_endpoint, data=json_args, headers=headers)
         flash('Record was successfully updated')
-        flash(json_args)
         return redirect(url_for('show_all'))
     else:
         return redirect(url_for('show_all'))
@@ -106,7 +105,7 @@ def scan():
         }
 
     json_args = json.dumps(str_args)
-    print(json_args)
+
     response = requests.post(api_endpoint+"/scan", data=json_args, headers=headers)
 
     return render_template('show_all.html', asteroids=response.json())

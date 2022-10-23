@@ -9,15 +9,11 @@
     <title>{% include 'title.html' %}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         .wrapper {
-            width: 1000px;
-            margin: 0 auto;
-        }
 
-        table tr td:last-child {
-            width: 1000px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -66,7 +62,12 @@
                             <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="12"></td>
                             <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="32">
                             </td>
-                            <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2">
+                            <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2" 
+                                {%if asteroid.hazard=="Y" %}
+                                 style="border: 2px solid red;" 
+                                 {% else %}
+                                    style="border: 1px solid green;" 
+                                {% endif %}>
                             </td>
                             <td><input type="text" id="diameterkm" name="diameterkm" value="{{ asteroid.diameterkm }}"
                                     size="6"></td>

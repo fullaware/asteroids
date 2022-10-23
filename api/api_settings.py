@@ -16,7 +16,7 @@ if "DB_SERVER" in os.environ and "DB_USER" in os.environ and "DB_PW" in os.envir
 else:
     print(f"\nERROR : Missing environment variables:\n")
     print(f"DB_SERVER\nDB_USER\nDB_PW\nDB_NAME\n")
-    print(f"Loading api.env file...\n")
+    print(f"Loading .env file...\n")
 
     db_server = os.getenv['DB_SERVER']
     db_username = os.getenv['DB_USER']
