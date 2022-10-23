@@ -5,7 +5,7 @@ metadata:
   namespace: asteroids
 data:
   DB_SERVER: "mariadb-service"
-  DB_USER: "asteroids"
+  DB_USER: "asteroid"
   DB_PW: "I@mR00t"
   DB_NAME: "asteroids"
   API_HOSTNAME: "asteroids-api"

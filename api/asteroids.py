@@ -5,8 +5,8 @@ from api_settings import *
 db = SQLAlchemy(app)
 
 
-# the class Asteroids will inherit the db.Model of SQLAlchemy
-class Asteroids(db.Model):
+# the class AsteroidsModel will inherit the db.Model of SQLAlchemy
+class AsteroidsModel(db.Model):
     __tablename__ = 'asteroids'  # creating a table name
     id = db.Column(db.Integer, primary_key=True)  # this is the primary key
     name = db.Column(db.String(80), nullable=False)
@@ -32,7 +32,7 @@ class Asteroids(db.Model):
         # creating an instance of our asteroid constructor
         print(f"TESTING _json_payload\n{_json_payload}")
 
-        new_asteroid = Asteroids(   name=_json_payload["name"], 
+        new_asteroid = AsteroidsModel(   name=_json_payload["name"], 
                                     sizekg=_json_payload["sizekg"], 
                                     hazard=_json_payload["hazard"], 
                                     diameterkm=_json_payload["diameterkm"], 
@@ -43,19 +43,19 @@ class Asteroids(db.Model):
         db.session.commit()  # commit changes to session
 
     def get_all_asteroids():
-        '''function to get all Asteroids in our database'''
-        return [Asteroids.json(asteroid) for asteroid in Asteroids.query.filter(db.and_(Asteroids.au > .00200,Asteroids.au < .00330)).all()]
+        '''function to get all AsteroidsModel in our database'''
+        return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.filter(db.and_(AsteroidsModel.au > .00200,AsteroidsModel.au < .00330)).all()]
 
     def get_asteroid(_id):
         '''function to get asteroid using the id of the asteroid as parameter'''
-        return [Asteroids.json(Asteroids.query.filter_by(id=_id).first())]
-        # Asteroids.json() coverts our output to json
+        return [AsteroidsModel.json(AsteroidsModel.query.filter_by(id=_id).first())]
+        # AsteroidsModel.json() coverts our output to json
         # the filter_by method filters the query by the id
         # the .first() method displays the first value
 
     def update_asteroid_json(_id, _json_payload):
         '''function to update the details of a asteroid using the id'''
-        asteroid_to_update = Asteroids.query.filter_by(id=_id).first()
+        asteroid_to_update = AsteroidsModel.query.filter_by(id=_id).first()
         asteroid_to_update.name = _json_payload["name"]
         asteroid_to_update.sizekg = _json_payload["sizekg"]
         asteroid_to_update.hazard = _json_payload["hazard"]
@@ -70,25 +70,25 @@ class Asteroids(db.Model):
     #     '''function to delete a asteroid from our database using
     #        the id of the asteroid as a parameter'''
     #     print(_id)
-    #     Asteroids.query.filter_by(id=_id).delete()
+    #     AsteroidsModel.query.filter_by(id=_id).delete()
     #     # filter by id and delete
     #     db.session.commit()  # commiting the new change to our database
     
     def search_all_asteroids(_search):
         search = "%{}%".format(_search)
 
-        # return [Asteroids.json(asteroid) for asteroid in Asteroids.query.filter(or_(Asteroids.name.like(search),Asteroids.hazard.like(search))).all()]
-        return [Asteroids.json(asteroid) for asteroid in Asteroids.query.filter(Asteroids.name.like(search)).all()]
+        # return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.filter(or_(AsteroidsModel.name.like(search),AsteroidsModel.hazard.like(search))).all()]
+        return [AsteroidsModel.json(asteroid) for asteroid in AsteroidsModel.query.filter(AsteroidsModel.name.like(search)).all()]
 
     def analyze_asteroids():
-        '''function to analyze all Asteroids in our database'''
+        '''function to analyze all AsteroidsModel in our database'''
         
-        avg_au = db.session.query(func.avg(Asteroids.au)).all()
+        avg_au = db.session.query(func.avg(AsteroidsModel.au)).all()
 
         avg_au_decimal = [x[0] for x in avg_au]
 
-        # color_count = Asteroids.query.count(Asteroids.rotationh).all()
-        spectraltype_row = db.session.query(Asteroids.spectraltype, func.count(Asteroids.spectraltype)).group_by(Asteroids.spectraltype).order_by(func.count(Asteroids.spectraltype).desc()).all()
+        # color_count = AsteroidsModel.query.count(AsteroidsModel.rotationh).all()
+        spectraltype_row = db.session.query(AsteroidsModel.spectraltype, func.count(AsteroidsModel.spectraltype)).group_by(AsteroidsModel.spectraltype).order_by(func.count(AsteroidsModel.spectraltype).desc()).all()
 
         result2 = []
 
@@ -97,7 +97,7 @@ class Asteroids(db.Model):
 
 
         payload = {
-            'count' : Asteroids.query.count(),
+            'count' : AsteroidsModel.query.count(),
             'avg_au' : int(avg_au_decimal[0]),
             'spectral_types' : result2
         }

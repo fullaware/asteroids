@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: asteroids
-  name: asteroids
+    app: asteroids-app
+  name: asteroids-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: asteroids
+      app: asteroids-app
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -17,14 +17,14 @@ spec:
   template:
     metadata:
       labels:
-        app: asteroids
+        app: asteroids-app
     spec:
       containers:
       - image: fullaware/asteroids-app
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
-        name: asteroids
+        name: asteroids-app
         envFrom:
         - configMapRef:
             name: asteroids-config

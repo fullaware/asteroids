@@ -5,7 +5,7 @@ metadata:
     app: asteroids-api
   name: asteroids-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: asteroids-api
