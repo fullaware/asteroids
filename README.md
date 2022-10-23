@@ -27,3 +27,8 @@ docker rm $(docker ps -a -q)
 # NOTE: issue with mysql-connector
 https://stackoverflow.com/questions/73244027/character-set-utf8-unsupported-in-python-mysql-connector
 Set requirements.txt `mysql-connector-python==8.0.29` instead of latest which is `8.0.30`
+
+
+Can't parse 910000000000000000000 into sizekg even though this is how many kg Ceres is.
+```
+{"name": "1 Ceres", "sizekg": "910000000000000000000", "hazard": "N", "diameterkm": "939.4", "spectraltype": "C", "rotationh": "9.07417", "au": "1.59478"} ```
