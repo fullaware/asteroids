@@ -10,20 +10,28 @@ class AsteroidsModel(db.Model):
     __tablename__ = 'asteroids'  # creating a table name
     id = db.Column(db.Integer, primary_key=True)  # this is the primary key
     name = db.Column(db.String(80), nullable=False)
+    owner = db.Column(db.Integer, nullable=True)
     # nullable is false so the column can't be empty
     sizekg = db.Column(db.BigInteger, nullable=False)
-    hazard = db.Column(db.String(2), nullable=False)
+    minedsizekg = db.Column(db.BigInteger, nullable=False)
     diameterkm = db.Column(db.Numeric, nullable=False)
     rotationh = db.Column(db.Numeric, nullable=False)
-    spectraltype = db.Column(db.String(3), nullable=False)
+    spectralgroup = db.Column(db.String(3), nullable=False)
     au = db.Column(db.Numeric, nullable=False)
+    hazard = db.Column(db.String(2), nullable=False)
 
 
     def json(self):
-        return {'id': self.id, 'name': self.name, 'sizekg': self.sizekg,
-                'hazard': self.hazard, 'diameterkm': self.diameterkm,
-                'rotationh': self.rotationh, 'spectraltype': self.spectraltype,
-                'au': self.au}
+        return {'id': self.id, 
+                'name': self.name,
+                'owner': self.owner, 
+                'sizekg': self.sizekg,
+                'minedsizekg': self.minedsizekg,
+                'diameterkm': self.diameterkm,
+                'rotationh': self.rotationh, 
+                'spectralgroup': self.spectralgroup,
+                'au': self.au,
+                'hazard': self.hazard}
         # this method we are defining will convert our output to json
 
     def add_asteroid_json(_json_payload):
@@ -33,12 +41,14 @@ class AsteroidsModel(db.Model):
         print(f"TESTING _json_payload\n{_json_payload}")
 
         new_asteroid = AsteroidsModel(   name=_json_payload["name"], 
+                                    owner=_json_payload["owner"],
                                     sizekg=_json_payload["sizekg"], 
-                                    hazard=_json_payload["hazard"], 
+                                    minedsizekg=_json_payload["minedsizekg"], 
                                     diameterkm=_json_payload["diameterkm"], 
                                     rotationh=_json_payload["rotationh"], 
-                                    spectraltype=_json_payload["spectraltype"], 
-                                    au=_json_payload["au"])
+                                    spectralgroup=_json_payload["spectralgroup"], 
+                                    au=_json_payload["au"],
+                                    hazard=_json_payload["hazard"])
         db.session.add(new_asteroid)  # add new asteroid to database session
         db.session.commit()  # commit changes to session
 
@@ -71,12 +81,14 @@ class AsteroidsModel(db.Model):
         '''function to update the details of a asteroid using the id'''
         asteroid_to_update = AsteroidsModel.query.filter_by(id=_id).first()
         asteroid_to_update.name = _json_payload["name"]
+        asteroid_to_update.owner = _json_payload["owner"]
         asteroid_to_update.sizekg = _json_payload["sizekg"]
-        asteroid_to_update.hazard = _json_payload["hazard"]
+        asteroid_to_update.minedsizekg = _json_payload["minedsizekg"]
         asteroid_to_update.diameterkm = _json_payload["diameterkm"]
         asteroid_to_update.rotationh = _json_payload["rotationh"]
-        asteroid_to_update.spectraltype = _json_payload["spectraltype"]
+        asteroid_to_update.spectralgroup = _json_payload["spectralgroup"]
         asteroid_to_update.au = _json_payload["au"]
+        asteroid_to_update.hazard = _json_payload["hazard"]
         db.session.commit()
 
 
@@ -102,18 +114,18 @@ class AsteroidsModel(db.Model):
         avg_au_decimal = [x[0] for x in avg_au]
 
         # color_count = AsteroidsModel.query.count(AsteroidsModel.rotationh).all()
-        spectraltype_row = db.session.query(AsteroidsModel.spectraltype, func.count(AsteroidsModel.spectraltype)).group_by(AsteroidsModel.spectraltype).order_by(func.count(AsteroidsModel.spectraltype).desc()).all()
+        spectralgroup_row = db.session.query(AsteroidsModel.spectralgroup, func.count(AsteroidsModel.spectralgroup)).group_by(AsteroidsModel.spectralgroup).order_by(func.count(AsteroidsModel.spectralgroup).desc()).all()
 
         result2 = []
 
-        for row in spectraltype_row:
+        for row in spectralgroup_row:
             result2.append({row[0] : row[1]})
 
 
         payload = {
             'count' : AsteroidsModel.query.count(),
             'avg_au' : int(avg_au_decimal[0]),
-            'spectral_types' : result2
+            'spectral_groups' : result2
         }
         
         return payload

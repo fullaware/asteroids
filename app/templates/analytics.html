@@ -32,7 +32,7 @@
             Average = {{ analytics.avg_au }} </p>
 
             <table class="table table-bordered table-hover table-striped">
-                {% for dict_item in analytics.spectral_types %}
+                {% for dict_item in analytics.spectral_groups %}
                 <tr>
                     {% for key, value in dict_item.items() %}
 

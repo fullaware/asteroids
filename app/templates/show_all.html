@@ -44,11 +44,13 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Owner</th>
                         <th>Size kg</th>
+                        <th>Mined Size kg</th>
                         <th>Hazard</th>
                         <th>Diameter km</th>
                         <th>Rotation h</th>
-                        <th>Spectral Type</th>
+                        <th>Spectral Group</th>
                         <th>AU</th>
                         <th>Action</th>
                     </tr>
@@ -60,7 +62,10 @@
                         <form method="POST" action="./update" style="display: inline">
                             <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}"></td>
                             <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="12"></td>
+                            <td><input type="text" id="owner" name="owner" value="{{ asteroid.owner }}" size="12"></td>
                             <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="32">
+                            </td>
+                            <td><input type="text" id="minedsizekg" name="minedsizekg" value="{{ asteroid.minedsizekg }}" size="32">
                             </td>
                             <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2" 
                                 {%if asteroid.hazard=="Y" %}
@@ -73,8 +78,8 @@
                                     size="6"></td>
                             <td><input type="text" id="rotationh" name="rotationh" value="{{ asteroid.rotationh }}"
                                     size="8"></td>
-                            <td><input type="text" id="spectraltype" name="spectraltype"
-                                    value="{{ asteroid.spectraltype }}" size="4"></td>
+                            <td><input type="text" id="spectralgroup" name="spectralgroup"
+                                    value="{{ asteroid.spectralgroup }}" size="4"></td>
                             <td><input type="text" id="au" name="au" value="{{ asteroid.au }}" size="4"></td>
                             <td>
                                 <input type="submit" value="Update">
