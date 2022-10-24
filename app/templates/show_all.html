@@ -61,11 +61,11 @@
                     <tr>
                         <form method="POST" action="./update" style="display: inline">
                             <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}"></td>
-                            <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="12"></td>
+                            <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="16"></td>
                             <td><input type="text" id="owner" name="owner" value="{{ asteroid.owner }}" size="12"></td>
-                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="32">
+                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="16">
                             </td>
-                            <td><input type="text" id="minedsizekg" name="minedsizekg" value="{{ asteroid.minedsizekg }}" size="32">
+                            <td><input type="text" id="minedsizekg" name="minedsizekg" value="{{ asteroid.minedsizekg }}" size="16">
                             </td>
                             <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2" 
                                 {%if asteroid.hazard=="Y" %}
@@ -79,7 +79,7 @@
                             <td><input type="text" id="rotationh" name="rotationh" value="{{ asteroid.rotationh }}"
                                     size="8"></td>
                             <td><input type="text" id="spectralgroup" name="spectralgroup"
-                                    value="{{ asteroid.spectralgroup }}" size="4"></td>
+                                    value="{{ asteroid.spectralgroup }}" size="2"></td>
                             <td><input type="text" id="au" name="au" value="{{ asteroid.au }}" size="4"></td>
                             <td>
                                 <input type="submit" value="Update">

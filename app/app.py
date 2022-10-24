@@ -51,10 +51,12 @@ def update():
         }
         str_args = {
             'name': response['name'],
+            'owner': response['owner'],
             'sizekg': response['sizekg'],
+            'minedsizekg': response['minedsizekg'],
             'hazard': response['hazard'],
             'diameterkm': response['diameterkm'],
-            'spectraltype': response['spectraltype'],
+            'spectralgroup': response['spectralgroup'],
             'rotationh': response['rotationh'],
             'au': response['au']
         }
@@ -65,6 +67,7 @@ def update():
 
         requests.put(uri_api_endpoint, data=json_args, headers=headers)
         flash('Record was successfully updated')
+        flash(json_args)
         return redirect(url_for('show_all'))
     else:
         return redirect(url_for('show_all'))
@@ -116,5 +119,11 @@ def analytics():
     response = requests.get(uri_endpoint)
     return render_template('analytics.html', analytics=response.json())
 
+@app.route('/mining')
+def mining():
+    uri_endpoint = api_endpoint+'/analytics'
+    response = requests.get(uri_endpoint)
+    return render_template('analytics.html', analytics=response.json())
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8080, debug=False)
+    app.run(host='0.0.0.0',port=8080, debug=True)

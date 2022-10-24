@@ -38,4 +38,16 @@ Set requirements.txt `mysql-connector-python==8.0.29` instead of latest which is
 
 Can't parse 910000000000000000000 into sizekg even though this is how many kg Ceres is.
 ```
-{"name": "1 Ceres", "sizekg": "910000000000000000000", "hazard": "N", "diameterkm": "939.4", "spectraltype": "C", "rotationh": "9.07417", "au": "1.59478"} ```
+{"name": "1 Ceres", "sizekg": "910000000000000000000", "hazard": "N", "diameterkm": "939.4", "spectraltype": "C", "rotationh": "9.07417", "au": "1.59478"} 
+```
+
+
+### Design Notes:
+
+|                                  |                       |
+|----------------------------------|-----------------------|
+| **Falcon 9 speed in kph**        | 28163.52              |
+| **1 AU in km**                   | 149597870.7           |
+| **Time to travel 1 AU in hours** | 5311.760416           |
+| **Time to travel 1 AU in days**  | 221.3233507           |
+| **Ceres size kg**                | 910000000000000000000 |
