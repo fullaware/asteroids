@@ -59,30 +59,30 @@
                 <tbody>
                     {% for asteroid in asteroids %}
                     <tr>
-                        <form method="POST" action="./mine" style="display: inline">
-                            <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}" ></td>
-                            <td>{{ asteroid.name }}<input type="hidden" id="name" name="name" value="{{ asteroid.name }}" size="16" ></td>
-                            <td>{{ asteroid.owner }}<input type="hidden" id="owner" name="owner" value="{{ asteroid.owner }}" size="12" ></td>
-                            <td>{{ asteroid.sizekg }}<input type="hidden" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="16" >
+                        <form method="POST" action="./update" style="display: inline">
+                            <td>{{ asteroid.id }}<input type="hidden" id="id" name="id" value="{{ asteroid.id }}"></td>
+                            <td><input type="text" id="name" name="name" value="{{ asteroid.name }}" size="16"></td>
+                            <td><input type="text" id="owner" name="owner" value="{{ asteroid.owner }}" size="12"></td>
+                            <td><input type="text" id="sizekg" name="sizekg" value="{{ asteroid.sizekg }}" size="16">
                             </td>
-                            <td>{{ asteroid.minedsizekg }}<input type="hidden" id="minedsizekg" name="minedsizekg" value="{{ asteroid.minedsizekg }}" size="16" >
+                            <td><input type="text" id="minedsizekg" name="minedsizekg" value="{{ asteroid.minedsizekg }}" size="16">
                             </td>
-                            <td {%if asteroid.hazard=="Y" %}
-                            style="border: 2px solid red;" 
-                            {% else %}
-                               style="border: 2px solid green;" 
-                           {% endif %}>{{ asteroid.hazard }}<input type="hidden" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2" >
-                                
+                            <td><input type="text" id="hazard" name="hazard" value="{{ asteroid.hazard }}" size="2" 
+                                {%if asteroid.hazard=="Y" %}
+                                 style="border: 2px solid red;" 
+                                 {% else %}
+                                    style="border: 1px solid green;" 
+                                {% endif %}>
                             </td>
-                            <td>{{ asteroid.diameterkm }}<input type="hidden" id="diameterkm" name="diameterkm" value="{{ asteroid.diameterkm }}"
-                                    size="6" ></td>
-                            <td>{{ asteroid.rotationh }}<input type="hidden" id="rotationh" name="rotationh" value="{{ asteroid.rotationh }}"
-                                    size="8" ></td>
-                            <td>{{ asteroid.spectralgroup }}<input type="hidden" id="spectralgroup" name="spectralgroup"
-                                    value="{{ asteroid.spectralgroup }}" size="2" ></td>
-                            <td>{{ asteroid.au }}<input type="hidden" id="au" name="au" value="{{ asteroid.au }}" size="4" ></td>
+                            <td><input type="text" id="diameterkm" name="diameterkm" value="{{ asteroid.diameterkm }}"
+                                    size="6"></td>
+                            <td><input type="text" id="rotationh" name="rotationh" value="{{ asteroid.rotationh }}"
+                                    size="8"></td>
+                            <td><input type="text" id="spectralgroup" name="spectralgroup"
+                                    value="{{ asteroid.spectralgroup }}" size="2"></td>
+                            <td><input type="text" id="au" name="au" value="{{ asteroid.au }}" size="4"></td>
                             <td>
-                                <input type="submit" value="Mine">
+                                <input type="submit" value="Update">
                         </form>
 
                         </td>

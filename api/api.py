@@ -28,6 +28,17 @@ class AsteroidById(Resource):
                             mimetype='application/json')
         return response
 
+class AsteroidMineById(Resource):
+    def get(self, asteroid_id):
+        return_value = AsteroidsModel.get_asteroid(asteroid_id)
+        return jsonify(return_value)
+
+    def put(self, asteroid_id):
+        request_data = request.get_json()
+        AsteroidsModel.update_asteroid_json(asteroid_id, request_data)
+        response = Response("asteroid Updated", status=200,
+                            mimetype='application/json')
+        return response
 
 class AsteroidSearch(Resource):
     def post(self):
@@ -52,6 +63,7 @@ class AsteroidAnalytics(Resource):
 
 api.add_resource(AsteroidList, URIPATH)
 api.add_resource(AsteroidById, f"{URIPATH}/<asteroid_id>")
+api.add_resource(AsteroidMineById, f"{URIPATH}/mine/<asteroid_id>")
 api.add_resource(AsteroidSearch, f"{URIPATH}/search")
 api.add_resource(AsteroidAnalytics, f"{URIPATH}/analytics")
 api.add_resource(AsteroidScanRange, f"{URIPATH}/scan")

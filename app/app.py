@@ -2,10 +2,12 @@ from app_settings import *
 from flask import Flask, request, jsonify, flash, url_for, redirect, render_template
 import json
 import requests
+import random
 
 # creating an instance of the flask app
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 
 @app.route('/')
 def show_all():
@@ -44,11 +46,12 @@ def update():
     if request.method == 'POST':
 
         response = request.form
-        
+
         headers = {
             'content-type': 'application/json',
             'content-length': str(len(response))
         }
+
         str_args = {
             'name': response['name'],
             'owner': response['owner'],
@@ -71,47 +74,90 @@ def update():
         return redirect(url_for('show_all'))
     else:
         return redirect(url_for('show_all'))
-    # return render_template('update.html', vehicle=car_id)
+
+
+@app.route('/mine', methods=['GET', 'POST'])
+def mine():
+    if request.method == 'POST':
+
+        response = request.form
+
+        headers = {
+            'content-type': 'application/json',
+            'content-length': str(len(response))
+        }
+        
+        prodpower = random.randint(50,100)
+        new_sizekg = int(response['sizekg']) - prodpower
+        new_minedsizekg = int(response['minedsizekg']) + prodpower
+        
+        str_args = {
+            'name': response['name'],
+            'owner': response['owner'],
+            'sizekg': new_sizekg,
+            'minedsizekg': new_minedsizekg,
+            'hazard': response['hazard'],
+            'diameterkm': response['diameterkm'],
+            'spectralgroup': response['spectralgroup'],
+            'rotationh': response['rotationh'],
+            'au': response['au']
+        }
+
+        json_args = json.dumps(str_args)
+
+        uri_api_endpoint = api_endpoint+'/'+str(response['id'])
+
+        requests.put(uri_api_endpoint, data=json_args, headers=headers)
+        flash('Record was successfully updated')
+        flash(json_args)
+        responsebyid = requests.get(uri_api_endpoint)
+        return render_template('show_all.html', asteroids=responsebyid.json())
+    else:
+        return redirect(url_for('show_all'))
 
 @app.route('/search', methods=['POST'])
 def search():
-    
+
     # print(jsonify(request.args()))
     response = request.form
-        
+
     headers = {
-            'content-type': 'application/json',
-            'content-length': str(len(response))
-        }
+        'content-type': 'application/json',
+        'content-length': str(len(response))
+    }
     str_args = {
-            'search': response['search']
-        }
+        'search': response['search']
+    }
 
     json_args = json.dumps(str_args)
-    response = requests.post(api_endpoint+"/search", data=json_args, headers=headers)
+    response = requests.post(api_endpoint+"/search",
+                             data=json_args, headers=headers)
 
     return render_template('show_all.html', asteroids=response.json())
+
 
 @app.route('/scan', methods=['POST'])
 def scan():
-    
+
     # print(jsonify(request.args()))
     response = request.form
-        
+
     headers = {
-            'content-type': 'application/json',
-            'content-length': str(len(response))
-        }
+        'content-type': 'application/json',
+        'content-length': str(len(response))
+    }
     str_args = {
-            'range': float(response['range']),
-            'location': float(response['location'])
-        }
+        'range': float(response['range']),
+        'location': float(response['location'])
+    }
 
     json_args = json.dumps(str_args)
 
-    response = requests.post(api_endpoint+"/scan", data=json_args, headers=headers)
+    response = requests.post(api_endpoint+"/scan",
+                             data=json_args, headers=headers)
 
     return render_template('show_all.html', asteroids=response.json())
+
 
 @app.route('/analytics')
 def analytics():
@@ -119,11 +165,6 @@ def analytics():
     response = requests.get(uri_endpoint)
     return render_template('analytics.html', analytics=response.json())
 
-@app.route('/mining')
-def mining():
-    uri_endpoint = api_endpoint+'/analytics'
-    response = requests.get(uri_endpoint)
-    return render_template('analytics.html', analytics=response.json())
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
