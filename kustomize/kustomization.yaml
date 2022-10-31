@@ -13,3 +13,11 @@ resources:
   - mariadb-secret.yaml
   - mariadb-service.yaml
   - mariadb-sts.yaml 
+patches:
+  - target:
+      kind: Ingress
+      name: asteroids-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: the.real.hostname

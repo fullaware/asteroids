@@ -5,7 +5,7 @@ metadata:
   namespace: asteroids
 spec:
   rules:
-  - host: asteroids.home.fullaware.net
+  - host: asteroids.local.domain.com
     http:
       paths:
         - pathType: Prefix
