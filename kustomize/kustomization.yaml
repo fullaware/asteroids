@@ -3,16 +3,16 @@ kind: Kustomization
 namespace: asteroids
 resources:
   - namespace.yaml
+  - asteroids-dbcreation-script-configmap.yaml
+  - asteroids-configmap.yaml
+  - mariadb-secret.yaml
+  - mariadb-service.yaml
+  - mariadb-sts.yaml 
   - api-deployment.yaml
   - api-service.yaml
   - app-deployment.yaml
   - app-service.yaml
-  - asteroids-dbcreation-script-configmap.yaml
-  - asteroids-configmap.yaml
   - ingress.yaml
-  - mariadb-secret.yaml
-  - mariadb-service.yaml
-  - mariadb-sts.yaml 
 patches:
   - target:
       kind: Ingress
@@ -20,4 +20,4 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: the.real.hostname
+        value: asteroids.home.fullaware.net 

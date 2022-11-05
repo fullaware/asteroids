@@ -93,14 +93,14 @@ def mine():
         
         str_args = {
             'name': response['name'],
-            'owner': response['owner'],
+            'owner': 1, # Foreign key to 'ships' table to be developed
             'sizekg': new_sizekg,
             'minedsizekg': new_minedsizekg,
             'hazard': response['hazard'],
-            'diameterkm': response['diameterkm'],
+            'diameterkm': float(response['diameterkm']),
             'spectralgroup': response['spectralgroup'],
-            'rotationh': response['rotationh'],
-            'au': response['au']
+            'rotationh': float(response['rotationh']),
+            'au': float(response['au'])
         }
 
         json_args = json.dumps(str_args)
