@@ -43,7 +43,8 @@ Can't parse 910000000000000000000 into sizekg even though this is how many kg Ce
 
 ### TODO - healthz readyz
 
-Implement `healthz` and `readyz` responses for both app and api.  Update deployments to check for status.
+Implement `healthz` (Liveness) and `readyz` (Readiness) checks for both app and api.  
+Update deployments to check for each.
 
 Curl
 
