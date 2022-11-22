@@ -37,10 +37,29 @@ Set requirements.txt `mysql-connector-python==8.0.29` instead of latest which is
 
 
 Can't parse 910000000000000000000 into sizekg even though this is how many kg Ceres is.
-```
+```JSON
 {"name": "1 Ceres", "sizekg": "910000000000000000000", "hazard": "N", "diameterkm": "939.4", "spectraltype": "C", "rotationh": "9.07417", "au": "1.59478"} 
 ```
 
+### TODO - healthz readyz
+
+Implement `healthz` and `readyz` responses for both app and api.  Update deployments to check for status.
+
+Curl
+
+```console
+  curl -X 'GET' \
+  'http://localhost:8080/healthz' \
+  -H 'accept: application/json'
+```
+Server response
+
+Response body
+```JSON
+{
+  "status": "OK"
+}
+```
 
 ### Design Notes:
 
