@@ -2,7 +2,7 @@
 Flask + REST + WebUI for performing CRUD operations on an SQLAlchemy asteroid database.
 
 ### Configuration
-* Create and load mariadb/mysql database from /dbinit
+* Creates and loads mariadb/mysql container from /dbinit
 * Update api/.env with proper mysql location for docker/local dev deployment
 * Update app/.env with proper location of API Hostname
 
