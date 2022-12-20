@@ -12,6 +12,7 @@ WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroid
 ```console
 docker-compose up --build --force-recreate --no-deps [-d]
 
+- OR run individually - 
 # Run APP with environment variables
 docker run --env-file app/.env -p 8080:8080 fullaware/asteroid-app:latest
 
