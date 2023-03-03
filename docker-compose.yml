@@ -10,6 +10,8 @@ services:
             - "3306:3306"
         volumes:
             - ./dbinit:/docker-entrypoint-initdb.d
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
     api:
         env_file:
             - api/.env
@@ -20,8 +22,8 @@ services:
         image: fullaware/asteroids-api:latest
         ports: 
             - "8088:8088"
-        networks:
-            - default
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
     app:
         env_file:
             - app/.env
@@ -34,5 +36,5 @@ services:
             - "8080:8080"
         links: 
             - api
-        networks:
-            - default
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
