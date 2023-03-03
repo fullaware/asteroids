@@ -26,7 +26,7 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 ```
 
-### Kubernetes Notes:
+### Kubernetes Notes ⎈:
 ```console
 kubectl apply -k kustomize/
 
