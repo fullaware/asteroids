@@ -7,3 +7,4 @@ __pycache__
 pyvenv.cfg
 .vscode
 pip-selfcheck.json
+venv
