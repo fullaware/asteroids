@@ -6,5 +6,4 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 COPY app/. /my_flask_app
 EXPOSE 8080
-ENTRYPOINT [ "python" ]
-CMD [ "app.py" ]
+ENTRYPOINT [ "gunicorn", "-b :8080", "app:app", "--log-file=-","--reload","--access-logfile=-", "--workers=2" ,"--threads=4", "--worker-class=gthread" ]

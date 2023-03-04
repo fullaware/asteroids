@@ -12,7 +12,7 @@ if "DB_SERVER" in os.environ and "DB_USER" in os.environ and "DB_PW" in os.envir
     db_password = urllib.parse.quote_plus(os.environ['DB_PW']) # Fix for passwords with non-alphanumeric symbols
     db_name = os.environ['DB_NAME']
     
-    print(f"\nRunning with user: {db_username} password: {db_password} on server {db_server} db {db_name}\n")
+    print(f"Connecting to db server {db_server} on db {db_name}\n")
 else:
     print(f"\nERROR : Missing environment variables:\n")
     print(f"DB_SERVER\nDB_USER\nDB_PW\nDB_NAME\n")
