@@ -20,4 +20,4 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: asteroids.home.fullaware.net 
+        value: asteroids.k8s.home.fullaware.com
