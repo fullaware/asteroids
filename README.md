@@ -6,7 +6,7 @@ Flask + REST + WebUI for performing CRUD operations on an SQLAlchemy asteroid da
 * Update api/.env with proper mysql location for docker/local dev deployment
 * Update app/.env with proper location of API Hostname
 
-WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroids <--> MariaDB/MySQL
+WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroids <--> MySQL
 
 ### Docker Notes:
 ```console

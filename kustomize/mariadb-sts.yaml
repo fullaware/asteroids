@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mariadb
-        image: mariadb
+        image: mariadb:11.0.2
         ports:
         - containerPort: 3306
           name: mariadb-port
@@ -35,9 +35,9 @@ spec:
             memory: 512Mi
         volumeMounts:
         - name: datadir
-          mountPath: /var/lib/mysql/
+          mountPath: /var/lib/mariadb/
         - name: asteroids-dbcreation-script
-          mountPath: /docker-entrypoint-initdb.d #https://hub.docker.com/_/mysql Refer Initializing a fresh instance
+          mountPath: /docker-entrypoint-initdb.d #https://hub.docker.com/_/mariadb Refer Initializing a fresh instance
       volumes:
         - name: asteroids-dbcreation-script
           configMap:

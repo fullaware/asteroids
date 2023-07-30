@@ -23,7 +23,7 @@ spec:
       - image: fullaware/asteroids-api
         ports:
         - containerPort: 8088
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: asteroids-api
         envFrom:
         - configMapRef:
