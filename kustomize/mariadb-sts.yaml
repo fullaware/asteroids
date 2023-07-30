@@ -26,6 +26,13 @@ spec:
             secretKeyRef:
               name: mariadb-secret
               key: mariadb-root-password
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 512Mi
         volumeMounts:
         - name: datadir
           mountPath: /var/lib/mysql/
