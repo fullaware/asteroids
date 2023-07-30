@@ -47,7 +47,11 @@ pipeline {
         sh 'trivy image -f json -o api-results.json fullaware/asteroids-api'
       }
     }
-    
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh 'kubectl apply -k ./kustomize'
+      }
+    }
   }
   
   post {

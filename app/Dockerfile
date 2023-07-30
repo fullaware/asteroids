@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.11-slim-bookworm
 RUN mkdir /my_flask_app
 WORKDIR /my_flask_app
 COPY requirements.txt /my_flask_app
