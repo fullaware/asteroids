@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: asteroids-app
-  namespace: asteroids
 spec:
   rules:
   - host: asteroids.local.domain.com
