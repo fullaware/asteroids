@@ -26,10 +26,13 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 ```
 
-### Kubernetes Notes ⎈:
+### Kubernetes Install ⎈:
 ```console
 kubectl apply -k kustomize/
 
+or
+
+helm install asteroids ./asteroids/ --create-namespace --namespace asteroids
 ```
 
 # NOTE: issue with mysql-connector

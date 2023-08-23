@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: asteroids-api
+  name: asteroids-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asteroids-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: asteroids-api
+    spec:
+      containers:
+      - image: fullaware/asteroids-api
+        ports:
+        - containerPort: 8088
+        imagePullPolicy: IfNotPresent
+        name: asteroids-api
+        envFrom:
+        - configMapRef:
+            name: asteroids-config
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
