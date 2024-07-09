@@ -10,7 +10,7 @@ WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088/api/asteroid
 
 ### Docker Notes:
 ```console
-docker-compose up --build --force-recreate --no-deps [-d]
+docker-compose up --build --force-recreate --no-deps --remove-orphans [-d]
 
 - OR run individually - 
 # Run APP with environment variables
