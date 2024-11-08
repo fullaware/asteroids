@@ -3,6 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 import urllib.parse
 import os
 from dotenv import load_dotenv
+import pymysql
 
 load_dotenv()
 
@@ -30,6 +31,6 @@ api = Api(app)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 # Configure our Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://reader:Notr00t1@10.28.28.81:3306/car_demo'
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{db_username}:{db_password}@{db_server}/{db_name}"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{db_username}:{db_password}@{db_server}/{db_name}?charset=utf8mb4"
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

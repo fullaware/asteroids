@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS asteroids DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS asteroids DEFAULT CHARACTER SET utf8;
 CREATE USER 'asteroid'@'%' IDENTIFIED BY 'I@mR00t';
 GRANT SELECT, DELETE, INSERT, UPDATE ON asteroids.* TO 'asteroid'@'%';
 --
@@ -17,7 +17,7 @@ CREATE TABLE `asteroids` (
   `rotationh` double DEFAULT NULL,
   `au` double DEFAULT NULL,
   `hazard` varchar(50) DEFAULT NULL,
-  UNIQUE KEY `asteroids_id_IDX` (`id`) USING BTREE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1650 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
