@@ -18,7 +18,7 @@ CREATE TABLE `asteroids` (
   `au` double DEFAULT NULL,
   `hazard` varchar(50) DEFAULT NULL,
   UNIQUE KEY `asteroids_id_IDX` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1650 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1650 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
